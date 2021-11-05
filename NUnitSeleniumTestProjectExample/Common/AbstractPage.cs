@@ -14,6 +14,8 @@ namespace NUnitSeleniumTestProjectExample.Common
             driver = _driver;
         }
 
+        
+
         public void GoTo(string url)
         {
             driver.Navigate().GoToUrl(url);

@@ -1,6 +1,7 @@
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using SeleniumExtras.PageObjects;
 
 namespace NUnitSeleniumTestProjectExample.Common
 
@@ -12,6 +13,7 @@ namespace NUnitSeleniumTestProjectExample.Common
         public AbstractPage(IWebDriver _driver) 
         {
             driver = _driver;
+            PageFactory.InitElements(driver, this);
         }
 
         

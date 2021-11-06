@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NUnitSeleniumTestProjectExample.Common;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
@@ -12,7 +13,7 @@ namespace NUnitSeleniumTestProjectExample.PageObjects
         private IWebDriver _driver;
         public GoogleSearchPage(IWebDriver driver) : base(driver)
         {
-            
+            _driver = driver;
         }
         public override string Url 
         {
@@ -23,9 +24,17 @@ namespace NUnitSeleniumTestProjectExample.PageObjects
         }
 
         [FindsBy(How = How.Name, Using = "q")]
-        public IWebElement SearchString { get; set; }
+        public IWebElement SearchString {get;set;}
 
         [FindsBy(How = How.Name, Using = "btnK")]
-        public IWebElement SearchButton { get; set; }
+        public IList<IWebElement> SearchButton { get; set; }
+
+        public GoogleSearchResult Search(string text_to_search)
+        {
+            SearchString.SendKeys(text_to_search);
+            SearchString.Submit();
+            //SearchButton[1].Click(); also works
+            return new GoogleSearchResult(_driver);
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace NUnitSeleniumTestProjectExample.Tests
         }
 
         [Test]
-        public void Test1()
+        public void SearchForViacheslav()
         {
             GoogleSearchPage gPage = new GoogleSearchPage(driver);
             

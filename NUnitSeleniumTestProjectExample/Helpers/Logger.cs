@@ -1,4 +1,5 @@
 using System;
+using NUnit.Framework;
 
 namespace NUnitSeleniumTestProjectExample.Helpers
 {
@@ -16,30 +17,23 @@ namespace NUnitSeleniumTestProjectExample.Helpers
 
         private static void logMessage(MessageTypes type, string message)
         {
-            switch (type)
-            {
-                case MessageTypes.Fatal:
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    break;
-                case MessageTypes.Error:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-                case MessageTypes.Warning:
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    break;
-                case MessageTypes.Info:
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    break;
-                case MessageTypes.Debug:
-                    Console.ForegroundColor = ConsoleColor.Gray;
-                    break;
-            }
             if ((int)type >= logLevel) 
             {
-                Console.WriteLine (type.ToString() + ": " + message);
+                if ((int)type > 1)
+                {
+                    TestContext.Out.WriteLineAsync(TestContext.CurrentContext.Test.MethodName + " => " 
+                        + type.ToString() + ": " + message);
+                    TestContext.Progress.WriteLine(TestContext.CurrentContext.Test.MethodName + " => " 
+                        + type.ToString() + ": " + message);
+                }
+                else
+                {
+                    TestContext.Out.WriteLineAsync(TestContext.CurrentContext.Test.MethodName + " => " 
+                        + type.ToString() + ": " + message);
+                    TestContext.Error.WriteLine(TestContext.CurrentContext.Test.MethodName + " => " 
+                        + type.ToString() + ": " + message);
+                }
             }
-            Console.ForegroundColor = ConsoleColor.Gray;
-            
         }
 
         public static void LogInfo(string message)

@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SeleniumExtras.PageObjects;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace NUnitSeleniumTestProjectExample.Tests
 {
@@ -28,11 +29,12 @@ namespace NUnitSeleniumTestProjectExample.Tests
         [Test]
         public void SearchForViacheslav()
         {
-            Logger.LogDebug("Debug");
-            Logger.LogInfo("Info");
-            Logger.LogWarning("Warning");
-            Logger.LogError("Error");
-            Logger.LogFatal("Fatal");
+            Logger.LogDebug("Debug message");
+            Logger.LogInfo("Info message");
+            Logger.LogWarning("Warning message");
+            Logger.LogError("Error message");
+            Logger.LogFatal("Fatal message");
+
             driver.Navigate().GoToUrl("https://google.com.ua");
             GoogleSearchPage gPage = new GoogleSearchPage(driver);
             GoogleSearchResult gResults = gPage.Search("viacheslav levkoniuk");

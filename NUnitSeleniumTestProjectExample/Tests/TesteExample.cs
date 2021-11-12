@@ -27,14 +27,13 @@ namespace NUnitSeleniumTestProjectExample.Tests
         [Test]
         public void SearchForViacheslav()
         {
+            driver.Navigate().GoToUrl("https://google.com.ua");
             GoogleSearchPage gPage = new GoogleSearchPage(driver);
-            
-            gPage.GoTo(gPage.Url);
             GoogleSearchResult gResults = gPage.Search("viacheslav levkoniuk");
 
             var link = gResults.GetFirstLink();
             string href = link.GetAttribute("href");
-            Assert.IsTrue(href.Contains("linkedin") && href.Contains("viacheslav-levkoniuk"));
+            Assert.IsTrue(href.Contains("linkedin") && href.Contains("viacheslav-levkoniuk"), "The search result does not contain requested search result");
             link.Click();
             
         }
@@ -42,7 +41,6 @@ namespace NUnitSeleniumTestProjectExample.Tests
         [TearDown]
         public void TearDown()
         {
-            Task.Delay(10000);
             driver.Close();
         }
         

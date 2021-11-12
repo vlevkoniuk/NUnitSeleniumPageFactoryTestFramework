@@ -18,6 +18,7 @@ namespace NUnitSeleniumTestProjectExample.Tests
         [SetUp]
         public void Setup()
         {
+            Logger.logLevel = 0; // log all messages
             driver = new ChromeDriver();
             _loginInfo = new Login();
             _loginInfo = LocalTestDataReader.LoadTestData<Login>(_loginInfo.GetType().Name);
@@ -27,6 +28,11 @@ namespace NUnitSeleniumTestProjectExample.Tests
         [Test]
         public void SearchForViacheslav()
         {
+            Logger.LogDebug("Debug");
+            Logger.LogInfo("Info");
+            Logger.LogWarning("Warning");
+            Logger.LogError("Error");
+            Logger.LogFatal("Fatal");
             driver.Navigate().GoToUrl("https://google.com.ua");
             GoogleSearchPage gPage = new GoogleSearchPage(driver);
             GoogleSearchResult gResults = gPage.Search("viacheslav levkoniuk");
